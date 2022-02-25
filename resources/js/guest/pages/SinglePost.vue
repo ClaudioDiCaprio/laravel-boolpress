@@ -22,7 +22,10 @@ export default {
         axios.get(`/api/posts/${this.$route.params.slug}`)
             .then( (response) => {
                 this.post = response.data;
-        });
+            }).catch( (error) => {
+                //handle error
+                this.$router.push({name:"page-404"});
+            })
     }
 }
 </script>

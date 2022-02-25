@@ -25,6 +25,10 @@ class PostController extends Controller
     {
         $post = Post::where("slug", $slug)->with(["category","tags"])->first();
 
+        if( empty($post) ) {
+            return response()->json(["message" => "Page Not Found"], 404);
+        }
+
         return response()->json($post);
 
     }
