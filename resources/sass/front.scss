@@ -1,0 +1,29 @@
+$container-size:1280px;
+//reset
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//endreset
+
+
+//container
+
+.container {
+    max-width: $container-size;
+    margin: 0 auto;
+}
+
+//endcontainer
+
+
+//typography
+
+h1 {
+    color: pink;
+}
+
+//typography
