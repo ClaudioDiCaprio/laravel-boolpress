@@ -20,6 +20,7 @@
                             <th scope="col">Slug</th>
                             <th scope="col">State</th>
                             <th scope="col">Categories</th>
+                            <th scope="col">Comments to approve</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -40,8 +41,11 @@
                                         @if ($post->category)
                                             {{$post->category->name}}
                                         @else
-                                        Nessuna
+                                        None
                                         @endif
+                                    </td>
+                                    <td>
+                                        {{count($post->comments->filter( function ($comment) {return $comment->approved == 0; }))}}
                                     </td>
                                     <td>
                                         <a href="{{route("posts.show",$post->id)}}"><button type="button" class="btn btn-primary">Show</button></a>

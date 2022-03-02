@@ -48,9 +48,43 @@
                                 @endforeach
                             </div>
                         @endif
-                    
-                        {{$post->content}}
+                        <div>
+                            {{$post->content}}
+                        </div>
                     </div>
+                    
+                    @if (count($post->comments) > 0)
+                    <div class="mt-3">
+                        <table class="table">
+                            <tbody>
+                                @foreach($post->comments as $comment)
+                                <tr>   
+                                        <td>{{$comment->content}}</td>
+                                        <td>
+                                            @if(!$comment->approved)
+                                            <form action="{{route('comments.update', $comment->id)}}" method="POST">
+                                                @csrf
+                                                @method("PATCH")
+                                                <button type="submit" class="btn btn-success">Approve</button>
+                                            </form>
+                                            @else
+                                                Approved
+                                            @endif
+                                           
+                                        </td>
+                                        <td>
+                                            <form action="{{route('comments.destroy', $comment->id)}}" method="POST">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                          </table>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
